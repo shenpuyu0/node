@@ -26,6 +26,11 @@ original_argv = sys.argv[1:]
 CC = os.environ.get('CC', 'cc' if sys.platform == 'darwin' else 'gcc')
 CXX = os.environ.get('CXX', 'c++' if sys.platform == 'darwin' else 'g++')
 
+# 使用缓存
+CC = "ccache " + CC
+CXX = "ccache " + CXX
+print("CC: ", CC, " CXX: ", CXX)
+
 tools_path = Path('tools')
 
 sys.path.insert(0, str(tools_path / 'gyp' / 'pylib'))
