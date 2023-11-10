@@ -550,6 +550,9 @@ class SharedFunctionInfo
   // Whether this function is defined in user-provided JavaScript code.
   inline bool IsUserJavaScript() const;
 
+  // Set Function toString return function name() { [native code] }
+  inline bool SetNativeType() const;
+
   // True if one can flush compiled code from this function, in such a way that
   // it can later be re-compiled.
   inline bool CanDiscardCompiled() const;

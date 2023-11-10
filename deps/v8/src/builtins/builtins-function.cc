@@ -222,6 +222,27 @@ Tagged<Object> DoFunctionBind(Isolate* isolate, BuiltinArguments args) {
 // ES6 section 19.2.3.2 Function.prototype.bind ( thisArg, ...args )
 BUILTIN(FunctionPrototypeBind) { return DoFunctionBind(isolate, args); }
 
+// Function.prototype.setNative
+BUILTIN(FunctionPrototypeSetNative) {
+  HandleScope scope(isolate);
+  Handle<Object> receiver = args.receiver();
+  if (IsJSBoundFunction(*receiver)){
+    THROW_NEW_ERROR_RETURN_FAILURE(
+        isolate, NewTypeError(MessageTemplate::kNotGeneric,
+                              isolate->factory()->NewStringFromAsciiChecked(
+                                  "Function.prototype.setNative1"),
+                              isolate->factory()->Function_string()));
+  }
+  if (IsJSFunction(*receiver)) {
+    return *JSFunction::SetNative(Handle<JSFunction>::cast(receiver));
+  }
+  THROW_NEW_ERROR_RETURN_FAILURE(
+      isolate, NewTypeError(MessageTemplate::kNotGeneric,
+                            isolate->factory()->NewStringFromAsciiChecked(
+                                "Function.prototype.setNative"),
+                            isolate->factory()->Function_string()));
+}
+
 // ES6 section 19.2.3.5 Function.prototype.toString ( )
 BUILTIN(FunctionPrototypeToString) {
   HandleScope scope(isolate);

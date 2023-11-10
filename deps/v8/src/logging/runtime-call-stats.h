@@ -159,6 +159,7 @@ class RuntimeCallTimer final {
   V(Function_Call)                                         \
   V(Function_New)                                          \
   V(Function_FunctionProtoToString)                        \
+  V(Function_FunctionProtoSetNative)                        \
   V(Function_NewInstance)                                  \
   V(FunctionTemplate_GetFunction)                          \
   V(FunctionTemplate_New)                                  \

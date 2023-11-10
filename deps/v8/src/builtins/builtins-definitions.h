@@ -605,6 +605,7 @@ namespace internal {
   ASM(FunctionPrototypeCall, JSTrampoline)                                     \
   /* ES6 #sec-function.prototype.tostring */                                   \
   CPP(FunctionPrototypeToString)                                               \
+  CPP(FunctionPrototypeSetNative)                                               \
                                                                                \
   /* Belongs to Objects but is a dependency of GeneratorPrototypeResume */     \
   TFS(CreateIterResultObject, NeedsContext::kYes, kValue, kDone)               \

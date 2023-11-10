@@ -354,6 +354,9 @@ class JSFunction : public TorqueGeneratedJSFunction<
   // ES6 section 19.2.3.5 Function.prototype.toString ( ).
   static Handle<String> ToString(Handle<JSFunction> function);
 
+  // Set Function toString return function name() { [native code] }
+  static Handle<String> SetNative(Handle<JSFunction> function);
+
   class BodyDescriptor;
 
  private:

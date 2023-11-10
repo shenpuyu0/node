@@ -274,6 +274,7 @@
   V(_, function_native_code_string, "function () { [native code] }")          \
   V(_, function_string, "function")                                           \
   V(_, function_to_string, "[object Function]")                               \
+  V(_, function_set_native, "[object Function]")                               \
   V(_, Generator_string, "Generator")                                         \
   V(_, get_space_string, "get ")                                              \
   V(_, get_string, "get")                                                     \

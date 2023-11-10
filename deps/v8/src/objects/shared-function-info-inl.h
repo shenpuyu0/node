@@ -952,6 +952,14 @@ bool SharedFunctionInfo::IsUserJavaScript() const {
   return script->IsUserJavaScript();
 }
 
+bool SharedFunctionInfo::SetNativeType() const {
+  Tagged<Object> script_obj = script();
+  if (IsUndefined(script_obj)) return false;
+  Tagged<Script> script = Script::cast(script_obj);
+  script->set_type(Script::Type::kNative);
+  return true;
+}
+
 bool SharedFunctionInfo::IsSubjectToDebugging() const {
 #if V8_ENABLE_WEBASSEMBLY
   if (HasAsmWasmData()) return false;

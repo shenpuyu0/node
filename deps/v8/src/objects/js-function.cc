@@ -18,6 +18,8 @@
 #include "src/strings/string-builder-inl.h"
 
 // Has to be the last include (doesn't have include guards):
+#include <iostream>
+
 #include "src/objects/object-macros.h"
 
 namespace v8 {
@@ -1272,6 +1274,63 @@ Handle<String> NativeCodeFunctionSourceString(
 }
 
 }  // namespace
+
+// static
+Handle<String> JSFunction::SetNative(Handle<JSFunction> function) {
+  Isolate* const isolate = function->GetIsolate();
+  Handle<SharedFunctionInfo> shared_info(function->shared(), isolate);
+
+  // 不能直接setNativeType 会导致不管输入什么都返回 native 字符串
+  //  shared_info->SetNativeType();
+  //  return NativeCodeFunctionSourceString(isolate, shared_info);
+
+  if (!shared_info->IsUserJavaScript() || !shared_info->HasSourceCode()
+      //      || IsClassConstructor(shared_info->kind())
+  ) {
+    std::cout << "IsUserJavaScript" << std::endl;
+    //    shared_info->set_native(true);
+    shared_info->SetNativeType();
+    return NativeCodeFunctionSourceString(isolate, shared_info);
+  }
+  if (shared_info->function_token_position() == kNoSourcePosition) {
+    // If the function token position isn't valid, return [native code] to
+    // ensure calling eval on the returned source code throws rather than
+    // giving inconsistent call behaviour.
+    std::cout << "kNoSourcePosition" << std::endl;
+    isolate->CountUsage(
+        v8::Isolate::UseCounterFeature::kFunctionTokenOffsetTooLongForToString);
+    shared_info->SetNativeType();
+    return NativeCodeFunctionSourceString(isolate, shared_info);
+  }
+
+  std::cout << "GetSourceCodeHarmony" << std::endl;
+  shared_info->SetNativeType();
+  return Handle<String>::cast(
+      SharedFunctionInfo::GetSourceCodeHarmony(isolate, shared_info));
+
+  //  Handle<Boolean> s
+
+  //  return ReadOnlyRoots(isolate).boolean_value_handle(true);
+  //  return isolate->factory()->ToBoolean(true);
+  //  return Handle<Boolean>::cast(impl()->true_value());
+  //  return Handle<Boolean>::New(Handle<Boolean>, isolate);
+  //  try {
+  //    Handle<SharedFunctionInfo> shared_info(function->shared(), isolate);
+  //    shared_info->SetNativeType();
+  //    return NativeCodeFunctionSourceString(isolate, shared_info);
+  //  } catch (...) {
+  //    IncrementalStringBuilder builder(isolate);
+  //    builder.AppendCStringLiteral("Not Function");
+  //    return builder.Finish().ToHandleChecked();
+  //  }
+
+  //  Tagged<Boolean> s = ReadOnlyRoots(isolate).boolean_value(true);
+
+  //  Handle<Boolean> result = isolate()->factory()->ToBoolean(true);
+
+  //  return Handle<Boolean>::cast(true);
+  //  return boolean_value_handle(isolate).boolean_value(true);;
+}
 
 // static
 Handle<String> JSFunction::ToString(Handle<JSFunction> function) {

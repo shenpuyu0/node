@@ -170,6 +170,7 @@ enum class PrimitiveType { kBoolean, kNumber, kString, kSymbol };
   V(FixedCOWArrayMap, fixed_cow_array_map, FixedCOWArrayMap)                 \
   V(Function_string, function_string, FunctionString)                        \
   V(function_to_string, function_to_string, FunctionToString)                \
+  V(function_set_native, function_set_native, FunctionSetNative)                \
   V(get_string, get_string, GetString)                                       \
   V(has_instance_symbol, has_instance_symbol, HasInstanceSymbol)             \
   V(has_string, has_string, HasString)                                       \
