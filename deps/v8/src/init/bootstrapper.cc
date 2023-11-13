@@ -1745,6 +1745,10 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
         SimpleInstallFunction(isolate_, prototype, "toString",
                               Builtin::kFunctionPrototypeToString, 0, false);
     native_context()->set_function_to_string(*function_to_string);
+    Handle<JSFunction> function_set_native =
+        SimpleInstallFunction(isolate_, prototype, "setNative",
+                              Builtin::kFunctionPrototypeSetNative, 0, false);
+    native_context()->set_function_set_native(*function_set_native);
 
     // Install the @@hasInstance function.
     Handle<JSFunction> has_instance = InstallFunctionAtSymbol(

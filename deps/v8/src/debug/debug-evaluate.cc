@@ -850,6 +850,7 @@ DebugInfo::SideEffectState BuiltinGetSideEffectState(Builtin id) {
     case Builtin::kGlobalIsNaN:
     // Function builtins.
     case Builtin::kFunctionPrototypeToString:
+    case Builtin::kFunctionPrototypeSetNative:
     case Builtin::kFunctionPrototypeBind:
     case Builtin::kFastFunctionPrototypeBind:
     case Builtin::kFunctionPrototypeCall:

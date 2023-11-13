@@ -113,6 +113,9 @@ class V8_EXPORT Function : public Object {
   V8_WARN_UNUSED_RESULT MaybeLocal<String> FunctionProtoToString(
       Local<Context> context);
 
+  V8_WARN_UNUSED_RESULT MaybeLocal<String> FunctionProtoSetNative(
+      Local<Context> context);
+
   /**
    * Returns true if the function does nothing.
    * The function returns false on error.

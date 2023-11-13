@@ -508,6 +508,7 @@ struct StaticReadOnlyRoot {
   static constexpr Tagged_t kfunction_native_code_string = 0x4a0d;
   static constexpr Tagged_t kfunction_string = 0x4a39;
   static constexpr Tagged_t kfunction_to_string = 0x4a4d;
+  static constexpr Tagged_t kfunction_set_native = 0x4a4d;
   static constexpr Tagged_t kGenerator_string = 0x4a6d;
   static constexpr Tagged_t kget_space_string = 0x4a85;
   static constexpr Tagged_t kget_string = 0x4a95;
@@ -1198,6 +1199,7 @@ static constexpr std::array<Tagged_t, 752> StaticReadOnlyRootsPointerTable = {
     StaticReadOnlyRoot::kfunction_native_code_string,
     StaticReadOnlyRoot::kfunction_string,
     StaticReadOnlyRoot::kfunction_to_string,
+    StaticReadOnlyRoot::kfunction_set_native,
     StaticReadOnlyRoot::kGenerator_string,
     StaticReadOnlyRoot::kget_space_string,
     StaticReadOnlyRoot::kget_string,

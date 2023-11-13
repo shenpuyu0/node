@@ -5622,6 +5622,18 @@ MaybeLocal<String> v8::Function::FunctionProtoToString(Local<Context> context) {
   RETURN_ESCAPED(Local<String>::Cast(result));
 }
 
+MaybeLocal<String> v8::Function::FunctionProtoSetNative(Local<Context> context) {
+  PREPARE_FOR_EXECUTION(context, Function, FunctionProtoSetNative, String);
+  auto self = Utils::OpenHandle(this);
+  Local<Value> result;
+  has_pending_exception = !ToLocal<Value>(
+      i::Execution::CallBuiltin(i_isolate, i_isolate->function_set_native(),
+                                self, 0, nullptr),
+      &result);
+  RETURN_ON_FAILED_EXECUTION(String);
+  RETURN_ESCAPED(Local<String>::Cast(result));
+}
+
 int Name::GetIdentityHash() {
   auto self = Utils::OpenHandle(this);
   return static_cast<int>(self->EnsureHash());

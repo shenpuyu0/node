@@ -263,6 +263,7 @@ declare namespace primordials {
   export const FunctionPrototypeBind: UncurryThis<typeof Function.prototype.bind>
   export const FunctionPrototypeCall: UncurryThis<typeof Function.prototype.call>
   export const FunctionPrototypeToString: UncurryThis<typeof Function.prototype.toString>
+  export const FunctionPrototypeSetNative: UncurryThis<typeof Function.prototype.setNative>
   export import Int16Array = globalThis.Int16Array;
   export const Int16ArrayPrototype: typeof Int16Array.prototype
   export const Int16ArrayBYTES_PER_ELEMENT: typeof Int16Array.BYTES_PER_ELEMENT
