@@ -60,6 +60,7 @@
 #include "v8-value.h"              // NOLINT(build/include_directory)
 #include "v8-version.h"            // NOLINT(build/include_directory)
 #include "v8-wasm.h"               // NOLINT(build/include_directory)
+#include "v8-spy.h"                // NOLINT(build/include_directory)
 #include "v8config.h"              // NOLINT(build/include_directory)
 
 // We reserve the V8_* prefix for macros defined in V8 public API and

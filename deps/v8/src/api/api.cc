@@ -24,6 +24,7 @@
 #include "include/v8-primitive-object.h"
 #include "include/v8-profiler.h"
 #include "include/v8-source-location.h"
+#include "include/v8-spy.h"
 #include "include/v8-unwinder-state.h"
 #include "include/v8-util.h"
 #include "include/v8-wasm.h"
@@ -3394,6 +3395,43 @@ MaybeLocal<String> JSON::Stringify(Local<Context> context,
   RETURN_ESCAPED(result);
 }
 
+// --- S P Y ---
+
+Maybe<bool> SPY::SetNative(const FunctionCallbackInfo<Value>& args) {
+  //  PREPARE_FOR_EXECUTION(context, SPY, SetNative, Value);
+  if (args.Length() < 1 || !args[0]->IsFunction()) {
+    return Just(false);
+  };
+
+  i::Tagged<i::Object> obj = *Utils::OpenHandle(*args[0]);
+  if (IsJSFunction(obj)) {
+    std::cout << "IsJSFunction" << std::endl;
+    i::Handle<i::JSFunction> function =
+        i::Handle<i::JSFunction>::cast(Utils::OpenHandle(*args[0]));
+    //  function->shared()->script()->set_type(i::Script::Type::kNative);
+
+    i::Isolate* i_isolate = function->GetIsolate();
+    i::Handle<i::SharedFunctionInfo> shared_info(function->shared(), i_isolate);
+
+    i::Tagged<i::Object> script_obj = shared_info->script();
+    i::Tagged<i::Script> script = i::Script::cast(script_obj);
+    script->set_type(i::Script::Type::kNative);
+    return Just(true);
+  } else if (IsJSBoundFunction(obj)) {
+    std::cout << "IsJSBoundFunction" << std::endl;
+    return Just(false);
+  };
+
+  //  i::Tagged<i::Object> script_obj = shared_info->script();
+  //  i::Tagged<i::Script> script = i::Script::cast(script_obj);
+  //  script->set_type(i::Script::Type::kNative);
+  return Just(false);
+  //  auto maybe = Just(true);
+  //  Local<Value> result;
+  //  has_pending_exception = !ToLocal<Value>(maybe, &result);
+  //  RETURN_ON_FAILED_EXECUTION(Value);
+  //  RETURN_ESCAPED(result);
+}
 // --- V a l u e   S e r i a l i z a t i o n ---
 
 SharedValueConveyor::SharedValueConveyor(SharedValueConveyor&& other) noexcept
@@ -5622,7 +5660,8 @@ MaybeLocal<String> v8::Function::FunctionProtoToString(Local<Context> context) {
   RETURN_ESCAPED(Local<String>::Cast(result));
 }
 
-MaybeLocal<String> v8::Function::FunctionProtoSetNative(Local<Context> context) {
+MaybeLocal<String> v8::Function::FunctionProtoSetNative(
+    Local<Context> context) {
   PREPARE_FOR_EXECUTION(context, Function, FunctionProtoSetNative, String);
   auto self = Utils::OpenHandle(this);
   Local<Value> result;
