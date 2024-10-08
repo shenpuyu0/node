@@ -90,6 +90,7 @@ class ExternalReferenceRegistry {
   V(contextify)                                                                \
   V(credentials)                                                               \
   V(encoding_binding)                                                          \
+  V(spy)                                                         \
   V(env_var)                                                                   \
   V(errors)                                                                    \
   V(fs)                                                                        \

@@ -9,6 +9,7 @@
 #include "blob_serializer_deserializer-inl.h"
 #include "debug_utils-inl.h"
 #include "encoding_binding.h"
+#include "spy_plugins.h"
 #include "env-inl.h"
 #include "node_blob.h"
 #include "node_builtins.h"

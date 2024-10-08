@@ -36,6 +36,7 @@ static_assert(static_cast<int>(NM_F_LINKED) ==
   V(builtins)                                                                  \
   V(contextify)                                                                \
   V(encoding_binding)                                                          \
+  V(spy)                                                          \
   V(fs)                                                                        \
   V(mksnapshot)                                                                \
   V(timers)                                                                    \

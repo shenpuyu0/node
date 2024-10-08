@@ -20,7 +20,7 @@ class Value;
 
 class V8_EXPORT SPY {
  public:
-  static V8_WARN_UNUSED_RESULT Maybe<bool> SetNative(const FunctionCallbackInfo<Value>& args);
+  static V8_WARN_UNUSED_RESULT Local<Boolean> SetNative(const FunctionCallbackInfo<Value>& args);
 };
 
 }  // namespace v8

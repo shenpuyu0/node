@@ -11,6 +11,7 @@ namespace node {
 // the C++ class name.
 #define SERIALIZABLE_BINDING_TYPES(V)                                          \
   V(encoding_binding_data, encoding_binding::BindingData)                      \
+  V(spy_binding_data, spy_space::BindingData)                      \
   V(fs_binding_data, fs::BindingData)                                          \
   V(mksnapshot_binding_data, mksnapshot::BindingData)                          \
   V(v8_binding_data, v8_utils::BindingData)                                    \

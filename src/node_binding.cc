@@ -38,6 +38,7 @@
   V(contextify)                                                                \
   V(credentials)                                                               \
   V(encoding_binding)                                                          \
+  V(spy)                                                         \
   V(errors)                                                                    \
   V(fs)                                                                        \
   V(fs_dir)                                                                    \
